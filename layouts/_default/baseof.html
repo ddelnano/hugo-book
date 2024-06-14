@@ -19,7 +19,9 @@
         {{ template "header" . }} <!-- Mobile layout header -->
       </header>
 
-      {{ partial "docs/inject/content-before" . }}
+      {{ if ne .Page.RelPermalink "/" }}
+          {{ partial "docs/inject/content-before" . }}
+      {{ end }}
       {{ template "main" . }} <!-- Page Content -->
       {{ partial "docs/inject/content-after" . }}
 
@@ -73,7 +75,7 @@
 {{ end }}
 
 {{ define "main" }}
-  <article class="markdown book-article">
+  <article style="margin-top: 1em;" class="markdown book-article">
     {{- .Content -}}
   </article>
 {{ end }}
