@@ -8,6 +8,9 @@
   <input type="checkbox" class="hidden toggle" id="menu-control" />
   <input type="checkbox" class="hidden toggle" id="toc-control" />
   <main class="container flex">
+    {{ if eq .Page.RelPermalink "/" }}
+      {{ partial "docs/landing" . }}
+    {{ end }}
     <aside class="book-menu">
       <div class="book-menu-content">
         {{ template "menu" . }} <!-- Left menu Content -->
@@ -49,7 +52,9 @@
 </html>
 
 {{ define "menu" }}
-  {{ partial "docs/menu" . }}
+  {{ if ne .Page.RelPermalink "/" }}
+    {{ partial "docs/menu" . }}
+  {{ end }}
 {{ end }}
 
 {{ define "header" }}
